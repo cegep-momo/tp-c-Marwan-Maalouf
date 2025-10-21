@@ -91,3 +91,10 @@ void User::fromFileFormat(const string& line) {
         }
     }
 }
+
+//numerotation automatique des ID utilisateurs
+int User::nextId = 1;
+
+User::User(const string& name) : name(name) {
+    userId = "U" + to_string(nextId++);
+}
