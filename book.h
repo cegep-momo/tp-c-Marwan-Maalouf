@@ -2,6 +2,7 @@
 #define BOOK_H
 
 #include <string>
+#include <vector>
 
 using namespace std;
 
@@ -38,6 +39,10 @@ public:
     string toString() const;
     string toFileFormat() const;
     void fromFileFormat(const string& line);
+    bool compareTitle(const Book& a, const Book& b);
+    bool compareAuthor(const Book& a, const Book& b);
+    void sortByTitle(vector<Book>& books);
+    void sortByAuthor(vector<Book>& books);
 };
 
 #endif

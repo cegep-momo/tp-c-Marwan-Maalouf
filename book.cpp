@@ -44,13 +44,14 @@ void Book::returnBook(){
 
 //toSring
 string Book::toString() const {
-    string stringPattern = "\nTitre: " + title + "\nAuteur(e): " + author + "\nISBN: " + isbn + "\nDisponible: " + (isAvailable ? "Oui" : "Non") + (isAvailable ? "": ("Nom de l'emprunteur: " + borrowerName));
-
+    string stringPattern = "\nTitre: " + title + "\nAuteur(e): " + author + "\nISBN: " + isbn + "\nDisponible: " + (isAvailable ? "Oui " : "Non ") + (isAvailable ? "": ("Nom de l'emprunteur: " + borrowerName));
+    return stringPattern;
 }
 
 //toFileFormat
 string Book::toFileFormat() const {
     string stringPattern = title + "|" + author + "|" + isbn + "|" + (isAvailable ? "1" : "0") + (isAvailable ? "": ("|" + borrowerName));
+    return stringPattern;
 }
 
 //fromFileFormat
@@ -65,4 +66,24 @@ void Book::fromFileFormat(const string& line){
     getline(ss, borrowerName, '|');
 
 isAvailable = (isAvailableStr == "1");
+}
+
+//Tri des resultats
+bool Book::compareTitle(const Book& bookA, const Book& bookB){
+    return (bookA.getTitle() < bookB.getTitle());
+}
+bool Book::compareAuthor(const Book& bookA, const Book& bookB){
+    return (bookA.getAuthor() < bookB.getAuthor());
+}
+void Book::sortByTitle(vector<Book>& books){
+    std::sort(books.begin(), books.end(), [](const Book a, const Book b) {
+    return a.getTitle() < b.getTitle();
+});
+
+}
+void Book::sortByAuthor(vector<Book>& books){
+    std::sort(books.begin(), books.end(), [](const Book a, const Book b) {
+    return a.getTitle() < b.getTitle();
+});
+
 }
